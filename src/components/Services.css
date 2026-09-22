@@ -1,0 +1,227 @@
+.services {
+  padding: 42px 0 0;
+  background: linear-gradient(180deg, rgba(243, 249, 254, 0) 0, var(--sky-50) 60px);
+}
+
+.services__head {
+  display: grid;
+  justify-items: center;
+  padding: 0 5px;
+  text-align: center;
+}
+
+.services__title {
+  margin-top: 14px;
+  font-size: 25.5px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.024em;
+  color: var(--ink);
+}
+
+.services__lead {
+  max-width: 330px;
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #5f7195;
+}
+
+.services__list {
+  display: grid;
+  gap: 11px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- glass service card ---------- */
+.service {
+  position: relative;
+  display: grid;
+  grid-template-columns: 80px 1fr 32px;
+  align-items: center;
+  gap: 13px;
+  min-height: 104px;
+  padding: 20px 12px 20px 12px;
+  border-radius: 20px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service::before {
+  /* soft aqua bloom behind the art, like light through glass */
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  width: 130px;
+  height: 130px;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120, 190, 250, 0.32), transparent 68%);
+  pointer-events: none;
+}
+
+.service:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -14px rgba(30, 100, 190, 0.45), inset 0 1px 0 #fff;
+}
+
+.service__art {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.service__art img {
+  width: 92px;
+  max-width: none;
+  margin: -6px;
+  height: auto;
+  mix-blend-mode: multiply;
+  -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  filter: saturate(1.08) contrast(1.02);
+}
+
+.service__body {
+  margin-right: -8px; /* titles run right up to the arrow, like the reference */
+}
+
+.service__title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.014em;
+  color: var(--ink);
+}
+
+.service__text {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.48;
+  color: var(--muted);
+}
+
+.service__go {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--blue-600);
+  border: 1px solid rgba(90, 160, 245, 0.7);
+  background: radial-gradient(circle at 50% 10%, #f4f9ff, #cfe3fb 95%);
+  box-shadow: 0 5px 12px -5px rgba(30, 110, 220, 0.55), inset 0 -2px 3px rgba(120, 180, 245, 0.4);
+  transition: transform 0.25s ease;
+}
+
+.service:hover .service__go {
+  transform: translateX(2px);
+}
+
+/* ---------- desktop ---------- */
+@media (min-width: 1024px) {
+  .services {
+    padding: 28px 0 20px;
+    background:
+      radial-gradient(60% 110% at 0% 100%, rgba(255, 255, 255, 0.95) 0%, transparent 62%),
+      radial-gradient(46% 80% at 100% 0%, rgba(196, 223, 247, 0.5) 0%, transparent 70%),
+      linear-gradient(180deg, #e9f3fb 0%, #f2f8fd 100%);
+  }
+
+  .services__head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0;
+    text-align: left;
+  }
+
+  .services__intro {
+    display: grid;
+    justify-items: start;
+  }
+
+  .services__title {
+    margin-top: 10px;
+    font-size: 33px;
+    line-height: 1.15;
+    letter-spacing: -0.026em;
+    color: var(--navy-800);
+  }
+
+  .services__title br {
+    display: none;
+  }
+
+  .services__lead {
+    max-width: 640px;
+    margin-top: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #52658a;
+  }
+
+  .services__list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .service {
+    grid-template-columns: 92px 1fr;
+    align-items: start;
+    gap: 18px;
+    min-height: 148px;
+    height: 100%;
+    padding: 14px 20px 14px 16px;
+    border-radius: 18px;
+  }
+
+  .service::before {
+    /* glow follows the top-aligned icon (icon centre is ~62px from the left, ~58px from the top) */
+    left: -3px;
+    top: 58px;
+  }
+
+  .service__art {
+    align-self: start;
+  }
+
+  .service__3d {
+    width: 104px;
+    margin: -8px 0 0 -6px;
+  }
+
+  .service__body {
+    margin-right: 0;
+    padding: 12px 0 30px;
+  }
+
+  .service__title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--navy-800);
+  }
+
+  .service__text {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.42;
+    color: #55688c;
+  }
+
+  .service__go {
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+    width: 34px;
+    height: 34px;
+    color: var(--blue-700);
+    border: 0;
+    background: #fff;
+    box-shadow: 0 8px 18px -8px rgba(30, 100, 200, 0.55);
+  }
+}

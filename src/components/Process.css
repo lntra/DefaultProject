@@ -1,0 +1,118 @@
+.process {
+  padding: 46px 0 0;
+}
+
+.process__steps {
+  display: grid;
+  gap: 22px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.step:not(:last-child)::before {
+  /* vertical connector between the glossy numbers */
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 52px;
+  bottom: -20px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(60, 140, 245, 0.55), rgba(60, 140, 245, 0.05));
+}
+
+.step__num {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 19px;
+  font-weight: 600;
+  color: #fff;
+  background:
+    radial-gradient(ellipse 70% 42% at 50% 16%, rgba(255, 255, 255, 0.55), transparent 70%),
+    radial-gradient(circle at 35% 25%, #5db6ff 0%, #1478f0 55%, #0a58d0 100%);
+  box-shadow: 0 12px 22px -10px rgba(15, 100, 230, 0.8), inset 0 -5px 9px rgba(5, 60, 160, 0.4);
+}
+
+.step__title {
+  padding-top: 2px;
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--navy-800);
+}
+
+.step__text {
+  margin-top: 5px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #566a8d;
+}
+
+@media (min-width: 1024px) {
+  .process {
+    padding: 22px 0 12px;
+    background: linear-gradient(180deg, #f8fbff 0%, #f5f9fe 100%);
+  }
+
+  .process__steps {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 24px;
+  }
+
+  .step {
+    grid-template-columns: 54px 1fr;
+    gap: 16px;
+    padding-right: 44px;
+  }
+
+  .step:not(:last-child)::before {
+    /* thin arrow between steps */
+    left: auto;
+    right: 6px;
+    top: 26px;
+    bottom: auto;
+    width: 44px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(100, 160, 230, 0.05), rgba(100, 160, 230, 0.7));
+  }
+
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 6px;
+    top: 23px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid rgba(100, 160, 230, 0.8);
+    border-right: 1px solid rgba(100, 160, 230, 0.8);
+    transform: rotate(45deg);
+  }
+
+  .step__num {
+    width: 54px;
+    height: 54px;
+    font-size: 20px;
+  }
+
+  .step__title {
+    font-size: 15.5px;
+  }
+
+  .step__text {
+    font-size: 13.5px;
+    line-height: 1.4;
+  }
+}

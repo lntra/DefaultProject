@@ -1,0 +1,130 @@
+.about {
+  padding: 46px 0 0;
+}
+
+.about__grid {
+  display: grid;
+  gap: 22px;
+  margin-top: 24px;
+}
+
+.about__photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 266 / 134;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 22px 34px -22px rgba(10, 50, 120, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.about__text {
+  display: grid;
+  gap: 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #4a5d80;
+}
+
+.about__more-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--navy-800);
+}
+
+.about__features {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(120, 165, 225, 0.25);
+}
+
+.feature__icon {
+  display: grid;
+  place-items: center;
+  color: var(--blue-500);
+  filter: drop-shadow(0 4px 7px rgba(30, 120, 240, 0.25));
+}
+
+.feature__title {
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--navy-800);
+}
+
+.feature__text {
+  margin-top: 2px;
+  font-size: 13.5px;
+  line-height: 1.42;
+  color: #5a6d90;
+}
+
+@media (min-width: 1024px) {
+  .about {
+    padding: 22px 0 0;
+    background:
+      radial-gradient(40% 60% at 0% 100%, rgba(190, 222, 246, 0.5) 0%, transparent 70%),
+      linear-gradient(180deg, #f5f9fe 0%, #eef6fc 100%);
+  }
+
+  .about__grid {
+    grid-template-columns: 340px minmax(0, 1fr) 400px;
+    align-items: start;
+    gap: 0 44px;
+    margin-top: 20px;
+    padding-bottom: 14px;
+  }
+
+  .about__photo {
+    aspect-ratio: 266 / 134;
+  }
+
+  .about__text {
+    padding-top: 22px;
+    gap: 16px;
+    font-size: 15.5px;
+    line-height: 1.5;
+  }
+
+  .about__more {
+    padding-left: 36px;
+    border-left: 1px solid rgba(110, 160, 225, 0.35);
+  }
+
+  .about__more-title {
+    font-size: 19px;
+  }
+
+  .about__features {
+    gap: 0;
+    margin-top: 8px;
+  }
+
+  .feature {
+    grid-template-columns: 52px 1fr;
+    gap: 14px;
+    padding: 6px 0;
+    border-top: 0;
+  }
+
+  .feature__title {
+    font-size: 16px;
+  }
+
+  .feature__text {
+    font-size: 13px;
+    line-height: 1.38;
+  }
+}

@@ -1,0 +1,159 @@
+.cta {
+  padding: 15px 0 0;
+  background: var(--sky-50);
+}
+
+/* The artwork is stretched behind the copy so a long headline can grow the card. */
+.cta__card {
+  position: relative;
+  display: grid;
+  padding: 13% 3.4% 13.5%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 22px 40px -22px rgba(20, 90, 180, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+/* copy sits inside the frosted panel baked into the artwork */
+.cta__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 16px 34px;
+  text-align: center;
+  border-radius: 22px;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+.cta__btn--alt {
+  display: none;
+}
+
+.cta__eyebrow {
+  margin-bottom: 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-700);
+}
+
+.cta__title {
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.024em;
+  color: var(--ink);
+}
+
+.cta__text {
+  margin-top: 12px;
+  font-size: 14.5px;
+  line-height: 1.42;
+  color: #2c3f66;
+}
+
+.cta__actions {
+  display: contents;
+}
+
+.cta__btn {
+  width: 84%;
+  height: 48px;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+/* ---------- desktop: wide glass banner over water ---------- */
+@media (min-width: 1024px) {
+  .cta {
+    /* the banner floats on calm water that rises out of the About section */
+    padding: 44px 0 46px;
+    background:
+      linear-gradient(180deg, #eef6fc 0%, rgba(238, 246, 252, 0.72) 22%, rgba(238, 246, 252, 0) 62%),
+      url('../assets/web/water.webp') center bottom / 100% 100% no-repeat,
+      #a9d3ef;
+  }
+
+  .cta .container {
+    width: min(1340px, calc(100% - 48px));
+  }
+
+  .cta__card {
+    padding: 0;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .cta__card::before {
+    /* banner artwork, feathered at its outer edge so it melts into the water */
+    content: '';
+    position: absolute;
+    inset: -2% -0.6%;
+    background: url('../assets/desktop/cta-banner.webp') center / 100% 100% no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 3%, #000 97%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .cta__bg {
+    display: none;
+  }
+
+  .cta__panel {
+    min-height: 186px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 40px;
+    padding: 24px 5.6% 24px 14.6%;
+    text-align: left;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .cta__title {
+    font-size: clamp(19px, 1.6vw, 24px);
+    line-height: 1.2;
+    color: var(--navy-800);
+  }
+
+  .cta__text {
+    margin-top: 8px;
+    max-width: 560px;
+    font-size: 14px;
+    color: #465b82;
+  }
+
+  .cta__actions {
+    display: flex;
+    gap: 14px;
+  }
+
+  .cta__btn {
+    width: auto;
+    margin-top: 0;
+    padding: 0 24px;
+    font-size: 14.5px;
+  }
+
+  .cta__btn--alt {
+    display: inline-flex;
+    padding: 0 22px;
+    color: var(--blue-700);
+  }
+}
