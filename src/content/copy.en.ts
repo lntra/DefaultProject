@@ -576,7 +576,7 @@ export const en: Copy = {
     links: [
       { label: 'Privacy', href: '#' },
       { label: 'Terms', href: '#' },
-      { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/in/fernando-ara%C3%BAjo-882b93223/' },
     ],
     note: ['Technical consulting in software,', 'automation and cybersecurity.'],
   },

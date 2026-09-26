@@ -40,17 +40,17 @@ export function Footer() {
 
         <ul className="footer__social">
           <li>
-            <a href="https://www.linkedin.com/" aria-label="LinkedIn" rel="noopener">
+            <a href="https://www.linkedin.com/in/fernando-ara%C3%BAjo-882b93223/" aria-label="LinkedIn" rel="noopener">
               <LinkedinIcon />
             </a>
           </li>
           <li>
-            <a href="https://github.com/" aria-label="GitHub" rel="noopener">
+            <a href="https://github.com/lntra" aria-label="GitHub" rel="noopener">
               <GithubIcon />
             </a>
           </li>
           <li>
-            <a href="mailto:contato@exemplo.com" aria-label={ui.email}>
+            <a href="mailto:intradevcontact@gmail.com" aria-label={ui.email}>
               <Mail size={22} strokeWidth={1.9} />
             </a>
           </li>

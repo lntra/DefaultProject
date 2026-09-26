@@ -638,7 +638,7 @@ export const footer = {
   links: [
     { label: 'Privacidade', href: '#' },
     { label: 'Termos', href: '#' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/fernando-ara%C3%BAjo-882b93223/' },
   ],
   note: ['Consultoria técnica em software,', 'automação e cybersecurity.'],
 }

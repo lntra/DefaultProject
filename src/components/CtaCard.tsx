@@ -57,7 +57,7 @@ export function CtaCard({
               <p className="cta__text">{text ?? cta.text}</p>
             </div>
             <div className="cta__actions">
-              <a className="btn btn--primary btn--cta btn--attract cta__btn" href="mailto:contato@exemplo.com">
+              <a className="btn btn--primary btn--cta btn--attract cta__btn" href="mailto:intradevcontact@gmail.com">
                 {button ?? cta.button}
                 <ArrowRight size={16} strokeWidth={2.4} />
               </a>
