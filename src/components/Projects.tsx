@@ -1,9 +1,11 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { projects } from '../content/copy'
+import { useCopy } from '../i18n/lang'
 import './Projects.css'
 
 export function Projects() {
+  const { projects } = useCopy()
+
   return (
     <section className="projects" id="projetos">
       <div className="container">
@@ -39,11 +41,11 @@ export function Projects() {
             return (
               <li key={p.title}>
                 {isInternal ? (
-                  <Link className="project glass" to={p.href}>
+                  <Link className="project glass card-lift" to={p.href}>
                     {body}
                   </Link>
                 ) : (
-                  <a className="project glass" href={p.href}>
+                  <a className="project glass card-lift" href={p.href}>
                     {body}
                   </a>
                 )}

@@ -8,13 +8,31 @@
   margin-top: 24px;
 }
 
+/* glass photo frame: a glossy top reflection sits over the portrait (::after) */
+.about__frame {
+  position: relative;
+  margin: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 22px 34px -22px rgba(10, 50, 120, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+.about__frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(170deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.08) 38%, transparent 40%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -18px 30px -20px rgba(120, 190, 245, 0.6);
+}
+
 .about__photo {
   width: 100%;
   height: auto;
-  aspect-ratio: 266 / 134;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 22px 34px -22px rgba(10, 50, 120, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.8);
+  object-position: 50% 30%;
 }
 
 .about__text {
@@ -79,16 +97,19 @@
       linear-gradient(180deg, #f5f9fe 0%, #eef6fc 100%);
   }
 
+  /* photo | text, with the "more than code" list spanning below; the third
+     column only opens up once there's room for the text beside it (1280px) */
   .about__grid {
-    grid-template-columns: 340px minmax(0, 1fr) 400px;
+    grid-template-columns: 280px minmax(0, 1fr);
     align-items: start;
-    gap: 0 44px;
+    gap: 28px 44px;
     margin-top: 20px;
     padding-bottom: 14px;
   }
 
   .about__photo {
-    aspect-ratio: 266 / 134;
+    aspect-ratio: 4 / 5;
+    object-position: 50% 22%;
   }
 
   .about__text {
@@ -99,8 +120,9 @@
   }
 
   .about__more {
-    padding-left: 36px;
-    border-left: 1px solid rgba(110, 160, 225, 0.35);
+    grid-column: 1 / -1;
+    padding-top: 22px;
+    border-top: 1px solid rgba(110, 160, 225, 0.35);
   }
 
   .about__more-title {
@@ -108,7 +130,8 @@
   }
 
   .about__features {
-    gap: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 36px;
     margin-top: 8px;
   }
 
@@ -126,5 +149,25 @@
   .feature__text {
     font-size: 13px;
     line-height: 1.38;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about__grid {
+    grid-template-columns: 300px minmax(0, 1fr) 380px;
+    gap: 0 44px;
+  }
+
+  .about__more {
+    grid-column: auto;
+    padding-top: 0;
+    padding-left: 36px;
+    border-top: 0;
+    border-left: 1px solid rgba(110, 160, 225, 0.35);
+  }
+
+  .about__features {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }

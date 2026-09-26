@@ -1,7 +1,9 @@
-import { process } from '../content/copy'
+import { useCopy } from '../i18n/lang'
 import './Process.css'
 
 export function Process() {
+  const { process } = useCopy()
+
   return (
     <section className="process" id="processo">
       <div className="container">

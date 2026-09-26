@@ -1,9 +1,13 @@
 import { useEffect } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
+import { AeroAmbience } from './components/Aero'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
+import { AutomacaoPage } from './pages/AutomacaoPage'
 import { HomePage } from './pages/HomePage'
 import { ProjectPage } from './pages/ProjectPage'
+import { SoftwarePage } from './pages/SoftwarePage'
+import { useSurfaceReveal } from './hooks/useSurfaceReveal'
 
 const bubbles = [
   { size: 74, left: '3%', top: '70%', delay: '0s' },
@@ -30,6 +34,8 @@ function ScrollManager() {
 }
 
 export default function App() {
+  useSurfaceReveal()
+
   return (
     <>
       <div className="backdrop" aria-hidden="true">
@@ -44,9 +50,12 @@ export default function App() {
 
       <div className="page">
         <ScrollManager />
+        <AeroAmbience />
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/projetos/automacao-de-processos" element={<AutomacaoPage />} />
+          <Route path="/projetos/sistema-de-gestao-operacional" element={<SoftwarePage />} />
           <Route path="/projetos/:slug" element={<ProjectPage />} />
         </Routes>
         <Footer />

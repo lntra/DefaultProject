@@ -1,0 +1,245 @@
+/* ------------------------------------------------------------------
+   Frutiger Aero motion — desktop only. Glass bubbles, drifting light,
+   and content that "surfaces" through water as it scrolls in.
+   ------------------------------------------------------------------ */
+.aero-rise,
+.aero-ambience {
+  display: none;
+}
+
+/* shared glossy bubble: a bright specular dot, a clear body and a rim that
+   thickens towards the edge, like the mobile backdrop bubbles */
+.aero-rise__bubble,
+.aero-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.98) 0 9%, transparent 24%),
+    radial-gradient(circle at 68% 76%, rgba(255, 255, 255, 0.5) 0 5%, transparent 16%),
+    radial-gradient(circle at 50% 50%, rgba(210, 236, 255, 0.08) 52%, rgba(150, 205, 250, 0.42) 88%, rgba(255, 255, 255, 0.7) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 -6px 14px rgba(90, 170, 240, 0.35),
+    0 6px 16px -8px rgba(40, 120, 210, 0.35);
+}
+
+@media (min-width: 1024px) {
+  /* ---------- hero: bubbles rising out of the water ---------- */
+  .aero-rise {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .aero-rise__bubble {
+    bottom: -30px;
+    opacity: 0;
+    animation: aero-rise 11s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  /* ---------- sections under the hero: page-wide ambience ---------- */
+  .aero-ambience {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .aero-bubble {
+    animation: aero-bob 10s ease-in-out infinite;
+  }
+
+  .aero-bubble--rise {
+    opacity: 0;
+    animation-name: aero-drift-up;
+    animation-timing-function: ease-in-out;
+  }
+
+  /* soft bokeh light drifting in the margins */
+  .aero-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(140, 205, 255, 0.34) 0%, rgba(180, 225, 255, 0.16) 40%, transparent 70%);
+    filter: blur(8px);
+    animation: aero-orb 26s ease-in-out infinite;
+  }
+
+  /* ---------- scroll reveal: surfacing through water ---------- */
+  [data-reveal='wait'] {
+    opacity: 0;
+  }
+
+  /* fill-mode backwards only: once finished the element returns to its own
+     styles, so hover transforms on cards keep working */
+  [data-reveal='in'] {
+    animation: aero-surface 0.95s var(--ease-glass) var(--reveal-delay, 0ms) backwards;
+  }
+
+  /* ---------- process orbs: bob gently, a glint sweeps across ---------- */
+  .step__num {
+    position: relative;
+    overflow: hidden;
+    animation: aero-bob-sm 6s ease-in-out infinite;
+  }
+
+  .step:nth-child(2) .step__num { animation-delay: -1.5s; }
+  .step:nth-child(3) .step__num { animation-delay: -3s; }
+  .step:nth-child(4) .step__num { animation-delay: -4.5s; }
+
+  .step__num::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.7) 50%, transparent 65%) 0 0 / 250% 100% no-repeat;
+    animation: aero-orb-glint 6s var(--ease-glass) infinite;
+    animation-delay: inherit;
+  }
+
+  /* ---------- about photo: light sweeps across the glass on hover ---------- */
+  .about__frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.45) 50%, transparent 60%) 0% 0 / 250% 100% no-repeat;
+    transition: background-position 0s;
+  }
+
+  .about__photo {
+    transition: transform 1.2s var(--ease-glass);
+  }
+}
+
+@media (min-width: 1024px) and (hover: hover) {
+  .about__frame:hover::before {
+    background-position: 100% 0;
+    transition: background-position 1.1s var(--ease-glass);
+  }
+
+  .about__frame:hover .about__photo {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes aero-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  12% {
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate(var(--drift, 8px), -210px) scale(0.9);
+  }
+  82% {
+    opacity: 0.85;
+  }
+  /* pops: swells and vanishes */
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--drift, 8px) * -0.5), -430px) scale(1.25);
+  }
+}
+
+@keyframes aero-bob {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(5px, -16px) rotate(6deg);
+  }
+  66% {
+    transform: translate(-4px, -7px) rotate(-4deg);
+  }
+}
+
+@keyframes aero-bob-sm {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes aero-drift-up {
+  0% {
+    opacity: 0;
+    transform: translate(0, 60px) scale(0.7);
+  }
+  20% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(8px, -40px) scale(0.95);
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-4px, -150px) scale(1.15);
+  }
+}
+
+@keyframes aero-orb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(30px, -50px) scale(1.12);
+    opacity: 1;
+  }
+}
+
+@keyframes aero-surface {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.985);
+    filter: blur(6px) saturate(1.3);
+  }
+  60% {
+    filter: blur(0) saturate(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes aero-orb-glint {
+  0%,
+  70% {
+    background-position: 0% 0;
+  }
+  92%,
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aero-rise,
+  :root .aero-bubble--rise {
+    display: none;
+  }
+  :root .aero-bubble,
+  :root .aero-orb,
+  :root .step__num,
+  :root .step__num::after {
+    animation: none;
+  }
+}

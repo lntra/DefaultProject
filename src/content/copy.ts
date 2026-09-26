@@ -9,6 +9,45 @@ import project1 from '../assets/desktop/project-1.webp'
 import project2 from '../assets/desktop/project-2.webp'
 import project3 from '../assets/desktop/project-3.webp'
 import aboutPhoto from '../assets/desktop/about.webp'
+// Art with Portuguese labels baked in — each has an English twin (see copy.en.ts).
+import heroScene from '../assets/web/hero-scene.webp'
+import mockLaptop from '../assets/desktop/mock-laptop.webp'
+import automacaoHeroFlow from '../assets/desktop/automacao-hero-flow.webp'
+import automacaoHeroCard from '../assets/desktop/automacao-hero-card.webp'
+import softwareHeroWide from '../assets/desktop/software-hero-wide.webp'
+import softwareHeroFlow from '../assets/desktop/software-hero-flow.webp'
+import softwareHub from '../assets/desktop/software-hub.webp'
+
+// Everything language-specific lives in this file (pt) and in copy.en.ts (en), which
+// must match the `Copy` type exported at the bottom. Components read it via useCopy().
+
+export const meta = {
+  title: 'Fernando Araújo — Software, automação e cybersecurity',
+  description:
+    'Desenvolvo sistemas, sites, integrações e automações sob medida, com foco em performance, segurança e redução de trabalho manual.',
+}
+
+export const art = {
+  heroScene,
+  mockLaptop,
+  automacaoHeroFlow,
+  automacaoHeroCard,
+  softwareHeroWide,
+  softwareHeroFlow,
+  softwareHub,
+}
+
+// Small interface strings (links, aria labels, alt text) that sit outside the sections.
+export const ui = {
+  backToProjects: 'Voltar para projetos',
+  mainNav: 'Principal',
+  footerNav: 'Rodapé',
+  openMenu: 'Abrir menu',
+  closeMenu: 'Fechar menu',
+  email: 'E-mail',
+  heroGlobeAlt: 'Globo terrestre translúcido sobre uma cidade à beira da água',
+  aboutPhotoAlt: 'Retrato de Fernando Araújo',
+}
 
 export const brand = {
   name: 'Fernando Araújo',
@@ -59,8 +98,9 @@ export const trust = [
     title: 'Segurança desde o início',
     sub: 'Aplicações pensadas com visão de desenvolvimento e segurança ofensiva.',
   },
-] as const
+]
 
+// Each service opens the case-study page of its area (same targets as `projects`).
 export const services = {
   eyebrow: 'Serviços',
   title: ['Soluções técnicas para', 'problemas reais de negócio.'],
@@ -71,19 +111,22 @@ export const services = {
       title: 'Desenvolvimento de software',
       text: 'Sites, sistemas internos, dashboards, portais, APIs e aplicações web sob medida.',
       image: cubeIcon,
+      href: '/projetos/sistema-de-gestao-operacional',
     },
     {
       title: 'Automação',
       text: 'Bots, integrações entre plataformas, fluxos de atendimento, coleta de dados e automação de processos manuais.',
       image: gearIcon,
+      href: '/projetos/automacao-de-processos',
     },
     {
       title: 'Cybersecurity',
       text: 'Análise de segurança de aplicações web, identificação de vulnerabilidades, revisão de configurações e orientação para correção.',
       image: shieldIcon,
+      href: '/projetos/aplicacoes-web-seguras',
     },
   ],
-} as const
+}
 
 // "Projetos / capacidade prática" — sold by the type of problem solved, no invented metrics.
 // `href` points to a detail page once one exists for that project; otherwise it falls
@@ -112,7 +155,7 @@ export const projects = {
       href: '/projetos/aplicacoes-web-seguras',
     },
   ],
-} as const
+}
 
 type Badge = { icon: string; title: string; sub: string }
 type MetaItem = { icon: string; label: string; value: string }
@@ -125,8 +168,9 @@ type IdealForItem = { icon: string; text: string }
 // methodology / results / CTA shape (see ProjectPage.tsx — keep these sections visually
 // identical across projects). The one part that changes shape is the section between
 // methodology and results: the cybersecurity project reports `findings` (severity-rated
-// vulnerabilities); the software and automation projects report `features` (a plain
-// capability grid) instead. A project can also add an optional `idealFor` strip — a
+// vulnerabilities); a project can report `features` (a plain capability grid) instead.
+// The software and automation projects have bespoke pages (see `softwarePage` /
+// `automacaoPage` below). A project can also add an optional `idealFor` strip — a
 // short qualifying checklist, styled like the homepage `trust` bar — right before the CTA.
 interface ProjectPageContent {
   back: string
@@ -136,7 +180,6 @@ interface ProjectPageContent {
   primary: string
   secondary: string
   badges: Badge[]
-  illustration: { lines: string[] }
   overview: { eyebrow: string; title: string; text: string; meta: MetaItem[] }
   methodology: { eyebrow: string; title: string; lead: string; steps: Step[] }
   findings?: { eyebrow: string; title: string; lead: string; items: Finding[] }
@@ -172,9 +215,6 @@ export const projectPages: Record<string, ProjectPageContent> = {
         sub: 'Achados, impacto e correções',
       },
     ],
-    illustration: {
-      lines: ['Identificar', 'Corrigir', 'Fortalecer', 'Seguir evoluindo'],
-    },
     overview: {
       eyebrow: 'Visão geral',
       title: 'Sobre o projeto',
@@ -241,157 +281,293 @@ export const projectPages: Record<string, ProjectPageContent> = {
       secondary: 'Falar pelo WhatsApp',
     },
   },
-
-  'sistema-de-gestao-operacional': {
-    back: 'Voltar para projetos',
-    eyebrow: 'Software',
-    title: 'Sistema de gestão operacional para empresas',
-    lead: 'Sistemas sob medida que centralizam informações, reduzem o trabalho manual e oferecem mais visibilidade para toda a operação da sua empresa.',
-    primary: 'Agendar uma conversa',
-    secondary: 'Falar sobre seu projeto',
-    badges: [
-      { icon: 'database', title: 'Dados centralizados', sub: 'Todas as informações em um só lugar' },
-      { icon: 'gear', title: 'Processos organizados', sub: 'Fluxos mais ágeis e padronizados' },
-      { icon: 'chart', title: 'Visão clara do negócio', sub: 'Relatórios e indicadores em tempo real' },
-    ],
-    illustration: {
-      lines: ['Centralizar', 'Organizar', 'Visualizar', 'Evoluir'],
-    },
-    overview: {
-      eyebrow: 'Visão geral',
-      title: 'Uma solução feita para a sua realidade',
-      text: 'Desenvolvo sistemas internos e aplicações web sob medida para empresas que precisam centralizar dados, organizar processos e ter uma visão clara da operação. Cada projeto é desenhado de acordo com os desafios do negócio, com foco em usabilidade, segurança e resultados no dia a dia.',
-      meta: [
-        { icon: 'grid', label: 'Tipo', value: 'Aplicação web sob medida' },
-        { icon: 'file', label: 'Escopo', value: 'Painel interno + usuários + relatórios' },
-        { icon: 'users', label: 'Papel', value: 'Desenvolvimento e arquitetura' },
-        { icon: 'file', label: 'Entregáveis', value: 'Sistema funcional + documentação' },
-      ],
-    },
-    methodology: {
-      eyebrow: 'Metodologia',
-      title: 'Do planejamento à evolução contínua',
-      lead: 'Um processo estruturado para transformar planilhas e processos manuais em um sistema confiável, construído em etapas validadas com você.',
-      steps: [
-        { title: 'Diagnóstico', text: 'Entendimento dos processos, desafios e objetivos da operação.' },
-        { title: 'Modelagem', text: 'Definição da estrutura do sistema, fluxos e requisitos.' },
-        { title: 'Desenvolvimento', text: 'Construção, testes e implantação do sistema.' },
-        { title: 'Entrega e evolução', text: 'Acompanhamento, melhorias contínuas e novos módulos.' },
-      ],
-    },
-    features: {
-      eyebrow: 'O que o sistema entrega',
-      title: 'Funcionalidades que fazem a diferença',
-      lead: 'Um sistema pensado para reduzir retrabalho e dar mais controle sobre a operação, do cadastro ao relatório.',
-      items: [
-        { icon: 'user', title: 'Cadastros e usuários', text: 'Gestão de clientes, fornecedores, produtos, equipes e muito mais.' },
-        { icon: 'chart', title: 'Relatórios e indicadores', text: 'Dados atualizados para acompanhar o desempenho.' },
-        { icon: 'lock', title: 'Permissões e perfis', text: 'Controle de acesso por função e nível de permissão.' },
-        { icon: 'link', title: 'Integrações com ferramentas', text: 'Conexão com outros sistemas e serviços que você já utiliza.' },
-        { icon: 'clock', title: 'Histórico e rastreabilidade', text: 'Registro de todas as ações com total transparência.' },
-        { icon: 'workflow', title: 'Fluxos internos', text: 'Processos padronizados e mais eficiência na operação.' },
-      ],
-    },
-    results: {
-      eyebrow: 'Resultados reais',
-      title: 'Impacto e melhorias para o seu negócio',
-      text: 'O sistema entrega mais controle sobre a operação, reduzindo retrabalho e dando à equipe uma visão confiável dos dados para decisões mais seguras.',
-      checklist: ['Menos retrabalho', 'Mais controle', 'Dados em um só lugar', 'Decisão com mais contexto'],
-    },
-    idealFor: {
-      title: 'Ideal para empresas que...',
-      items: [
-        { icon: 'file', text: 'Utilizam planilhas dispersas' },
-        { icon: 'workflow', text: 'Precisam organizar seus processos' },
-        { icon: 'chart', text: 'Desejam mais controle e visibilidade' },
-        { icon: 'users', text: 'Querem crescer com mais eficiência' },
-      ],
-    },
-    cta: {
-      eyebrow: 'Sistemas sob medida',
-      title: 'Vamos organizar a operação da sua empresa?',
-      text: 'Converse sobre sua necessidade e descubra como um sistema sob medida pode trazer mais eficiência e controle para o seu negócio.',
-      button: 'Agendar uma conversa',
-      secondary: 'Falar pelo WhatsApp',
-    },
-  },
-
-  'automacao-de-processos': {
-    back: 'Voltar para projetos',
-    eyebrow: 'Automação',
-    title: 'Automação de processos e tarefas repetitivas',
-    lead: 'Conecte suas ferramentas, elimine o trabalho manual e libere sua equipe para o que realmente importa. Automação sob medida para tornar sua operação mais ágil, eficiente e escalável.',
-    primary: 'Agendar uma conversa',
-    secondary: 'Falar sobre seu projeto',
-    badges: [
-      { icon: 'zap', title: 'Menos trabalho manual', sub: 'Automatize tarefas repetitivas' },
-      { icon: 'clock', title: 'Atendimento mais rápido', sub: 'Respostas e processos ágeis' },
-      { icon: 'link', title: 'Integrações entre sistemas', sub: 'Conecte suas ferramentas' },
-    ],
-    illustration: {
-      lines: ['Conectar', 'Automatizar', 'Acompanhar', 'Escalar'],
-    },
-    overview: {
-      eyebrow: 'Visão geral',
-      title: 'Mais eficiência para o seu negócio',
-      text: 'Implemento automações que conectam suas ferramentas e sistemas, reduzindo a fricção operacional e eliminando tarefas repetitivas. Com fluxos inteligentes, sua equipe ganha tempo, o atendimento se torna mais ágil e os processos passam a funcionar de forma integrada e confiável.',
-      meta: [
-        { icon: 'gear', label: 'Tipo', value: 'Automação + integrações' },
-        { icon: 'file', label: 'Escopo', value: 'Fluxos, bots e notificações' },
-        { icon: 'users', label: 'Papel', value: 'Desenho técnico e implementação' },
-        { icon: 'file', label: 'Entregáveis', value: 'Fluxo automatizado + documentação' },
-      ],
-    },
-    methodology: {
-      eyebrow: 'Como funciona',
-      title: 'Do planejamento à operação',
-      lead: 'Um processo estruturado para identificar oportunidades, desenhar o fluxo certo e colocar a automação em produção com confiança.',
-      steps: [
-        { title: 'Mapeamento do processo', text: 'Entendimento das necessidades e identificação de oportunidades.' },
-        { title: 'Desenho do fluxo', text: 'Criação do fluxo ideal com as ferramentas mais adequadas.' },
-        { title: 'Integrações e testes', text: 'Configuração, testes e validação de todo o processo.' },
-        { title: 'Acompanhamento e melhoria', text: 'Monitoramento dos resultados e melhorias contínuas.' },
-      ],
-    },
-    features: {
-      eyebrow: 'O que pode ser automatizado',
-      title: 'Tarefas que viram resultados',
-      lead: 'Da triagem de leads ao follow-up automático — fluxos que tiram trabalho repetitivo das mãos da sua equipe.',
-      items: [
-        { icon: 'users', title: 'Triagem de leads', text: 'Classifique e direcione leads automaticamente.' },
-        { icon: 'message', title: 'Atendimento inicial', text: 'Bots que respondem e orientam seus clientes.' },
-        { icon: 'bell', title: 'Notificações e alertas', text: 'Seja avisado sobre eventos importantes.' },
-        { icon: 'link', title: 'Envio de dados entre plataformas', text: 'Conecte seus sistemas e automatize informações.' },
-        { icon: 'database', title: 'Atualização de CRM/planilhas', text: 'Mantenha seus dados sempre atualizados.' },
-        { icon: 'check', title: 'Follow-up e confirmações', text: 'Envie lembretes e acompanhe cada etapa.' },
-      ],
-    },
-    results: {
-      eyebrow: 'Impacto e melhorias',
-      title: 'Resultados que você sente no dia a dia',
-      text: 'A automação reduz o tempo gasto em tarefas manuais, diminui erros e dá à equipe mais velocidade e previsibilidade no atendimento.',
-      checklist: ['Menos tempo gasto em tarefas manuais', 'Menos erros manuais', 'Mais velocidade no atendimento', 'Operação mais previsível'],
-    },
-    idealFor: {
-      title: 'Quando esse tipo de automação faz sentido?',
-      items: [
-        { icon: 'users', text: 'Equipes que repetem tarefas todos os dias' },
-        { icon: 'message', text: 'Negócios com atendimento via WhatsApp ou e-mail' },
-        { icon: 'database', text: 'Operações com múltiplas ferramentas' },
-        { icon: 'file', text: 'Processos manuais que tomam muito tempo' },
-      ],
-    },
-    cta: {
-      eyebrow: 'Vamos dar o próximo passo?',
-      title: 'Vamos automatizar o que hoje toma tempo da sua equipe?',
-      text: 'Converse sobre o seu cenário e descubra como a automação pode gerar mais produtividade e melhores resultados para o seu negócio.',
-      button: 'Agendar uma conversa',
-      secondary: 'Falar pelo WhatsApp',
-    },
-  },
 }
 
 export type ProjectSlug = keyof typeof projectPages
+
+// Bespoke content for the automação case-study page (src/pages/AutomacaoPage.tsx).
+// This one has its own section shapes (process-flow hero, before/after, reliability,
+// featured projects) instead of the generic ProjectPageContent shape above.
+export const automacaoPage = {
+  eyebrow: 'Automação',
+  hero: {
+    title: 'Automatize o trabalho que hoje depende de alguém lembrar, copiar ou repetir.',
+    lead: 'Conecto suas ferramentas, elimino tarefas manuais e transformo processos em fluxos automáticos — de atendimento e leads a sistemas internos e operações.',
+    primary: 'Mapear um processo comigo',
+    secondary: 'Falar pelo WhatsApp',
+    flow: [
+      { icon: 'message', label: 'Novo lead' },
+      { icon: 'file', label: 'Coleta de dados' },
+      { icon: 'database', label: 'CRM atualizado' },
+      { icon: 'bell', label: 'Notificação da equipe' },
+      { icon: 'mail', label: 'Follow-up automático' },
+    ],
+    trust: [
+      { icon: 'zap', title: 'Menos trabalho manual', sub: 'Elimine tarefas repetitivas' },
+      { icon: 'clock', title: 'Mais velocidade', sub: 'Processos acontecem sozinhos' },
+      { icon: 'check', title: 'Menos erros', sub: 'Informações sempre corretas' },
+      { icon: 'users', title: 'Operação previsível', sub: 'Acompanhe tudo em um só lugar' },
+    ],
+  },
+  methodology: {
+    eyebrow: 'Como eu trabalho',
+    title: 'Da análise à operação',
+    lead: 'Entendo seu contexto, desenho a melhor solução e deixo tudo funcionando no dia a dia. Você não precisa virar especialista em tecnologia.',
+    steps: [
+      {
+        num: '01',
+        icon: 'search',
+        title: 'Entendemos o processo',
+        text: 'Mapeamos tarefas, exceções, gargalos e oportunidades.',
+        delivery: 'Entrega: mapa do fluxo',
+      },
+      {
+        num: '02',
+        icon: 'workflow',
+        title: 'Desenhamos a automação',
+        text: 'Definimos regras, sistemas envolvidos e comportamento esperado.',
+        delivery: 'Entrega: fluxo proposto',
+      },
+      {
+        num: '03',
+        icon: 'code',
+        title: 'Implementamos e testamos',
+        text: 'Integrações, automações e tratamento de erros.',
+        delivery: 'Entrega: automação funcionando',
+      },
+      {
+        num: '04',
+        icon: 'chart',
+        title: 'Colocamos em operação',
+        text: 'Monitoramento, ajustes e documentação.',
+        delivery: 'Entrega: processo pronto',
+      },
+    ],
+  },
+  beforeAfter: {
+    eyebrow: 'Processo na prática',
+    title: 'Do manual ao automático',
+    lead: 'O mesmo processo. Dois cenários diferentes.',
+    before: {
+      title: 'Antes',
+      icon: 'pin',
+      tagline: 'Tempo gasto + erros + leads perdidos',
+      items: [
+        { icon: 'message', text: 'Lead chega pelo WhatsApp' },
+        { icon: 'mail', text: 'Alguém abre a mensagem' },
+        { icon: 'copy', text: 'Copia as informações' },
+        { icon: 'file', text: 'Cola em uma planilha' },
+        { icon: 'user', text: 'Avisa o vendedor' },
+        { icon: 'clock', text: 'Lembra de fazer follow-up' },
+      ],
+    },
+    after: {
+      title: 'Depois',
+      icon: 'shieldCheck',
+      tagline: 'Processo fluido e confiável',
+      items: [
+        { icon: 'check', text: 'Lead chega pelo WhatsApp' },
+        { icon: 'check', text: 'Dados são coletados automaticamente' },
+        { icon: 'check', text: 'CRM atualizado em tempo real' },
+        { icon: 'check', text: 'Responsável recebe notificação' },
+        { icon: 'check', text: 'Follow-up é programado' },
+        { icon: 'check', text: 'Tudo registrado e rastreável' },
+      ],
+    },
+    resultTitle: 'Um fluxo. Vários trabalhos eliminados.',
+    resultText: 'Sua equipe entra apenas onde realmente precisa tomar uma decisão. O resto, a automação cuida.',
+    annotation: 'Processos mais leves, negócios mais fortes.',
+  },
+  features: {
+    eyebrow: 'O que pode ser automatizado',
+    title: 'Tarefas que viram resultados',
+    lead: 'Exemplos de processos que automatizo para diferentes tipos de negócio.',
+    items: [
+      { icon: 'users', title: 'Triagem de leads', text: 'Classifique e direcione leads automaticamente.' },
+      { icon: 'message', title: 'Atendimento inicial', text: 'Bots que respondem e qualificam seus clientes.' },
+      { icon: 'bell', title: 'Notificações e alertas', text: 'Seja avisado sobre eventos importantes.' },
+      { icon: 'link', title: 'Envio de dados entre plataformas', text: 'Conecte seus sistemas e automatize informações.' },
+      { icon: 'database', title: 'Atualização de CRM/planilhas', text: 'Mantenha seus dados sempre atualizados.' },
+      { icon: 'check', title: 'Follow-up e confirmações', text: 'Envie lembretes e acompanhe cada etapa.' },
+    ],
+  },
+  reliability: {
+    eyebrow: 'Automação feita para o mundo real',
+    title: 'Confiabilidade em cada etapa',
+    lead: 'Mais do que fazer funcionar, meu foco é que a automação continue funcionando — de forma segura, documentada e fácil de manter.',
+    items: [
+      { icon: 'shield', title: 'Tratamento de falhas', text: 'Processos não param silenciosamente.' },
+      { icon: 'database', title: 'Validação dos dados', text: 'Informações são verificadas antes de seguir.' },
+      { icon: 'chart', title: 'Monitoramento', text: 'Acompanhe o funcionamento e identifique melhorias.' },
+      { icon: 'file', title: 'Documentação', text: 'Você sabe como tudo foi estruturado.' },
+    ],
+  },
+  featured: {
+    eyebrow: 'Projetos em destaque',
+    title: 'Resultados reais, contextos diferentes',
+    lead: 'Cada negócio tem um desafio. A solução é sempre adaptada.',
+    more: 'Ver todos os projetos',
+    items: [
+      {
+        tag: 'Comércio / E-commerce',
+        icon: 'shop',
+        title: 'Atendimento e qualificação automática',
+        text: 'Integração entre WhatsApp, CRM e sistema de vendas para atender e qualificar leads automaticamente.',
+      },
+      {
+        tag: 'Serviços',
+        icon: 'calendar',
+        title: 'Agendamento e notificações',
+        text: 'Fluxo de agendamento com lembretes automáticos e sincronização de calendário.',
+      },
+      {
+        tag: 'Operações internas',
+        icon: 'file',
+        title: 'Centralização de dados',
+        text: 'Integração entre múltiplos sistemas com atualização automática de planilhas e relatórios.',
+      },
+    ],
+  },
+  cta: {
+    eyebrow: 'Próximo passo',
+    title: 'Vamos encontrar o que vale a pena automatizar?',
+    text: 'Em uma conversa inicial, você me mostra como o processo funciona hoje. Eu identifico os pontos que podem ser automatizados e explico uma possível abordagem.',
+    button: 'Mapear meu processo',
+    secondary: 'Falar pelo WhatsApp',
+    note: 'Sem compromisso. Sem necessidade de escopo técnico.',
+  },
+}
+
+// Bespoke content for the software case-study page (src/pages/SoftwarePage.tsx).
+// Plan: src/assets/software/software-page-plan.md — sells custom software development as a
+// service (pain → transformation → low-risk method → outcomes), not a ready-made product.
+// No invented metrics: the transformation example stays qualitative.
+export const softwarePage = {
+  hero: {
+    eyebrow: 'Desenvolvimento de software sob medida',
+    title: 'Software sob medida para organizar e escalar sua operação',
+    lead: 'Transformo processos manuais, planilhas e ferramentas desconectadas em sistemas internos feitos para a realidade da sua empresa.',
+    primary: 'Agendar uma conversa',
+    secondary: 'Falar sobre seu projeto',
+    artAlt:
+      'Planilhas, WhatsApp, e-mail, aprovações e outras ferramentas conectadas a um único painel: seu sistema.',
+    trust: [
+      { icon: 'database', title: 'Dados centralizados', sub: 'Tudo em um só lugar' },
+      { icon: 'gear', title: 'Processos automatizados', sub: 'Menos trabalho manual' },
+      { icon: 'chart', title: 'Visão da operação', sub: 'Indicadores em tempo real' },
+    ],
+  },
+  transformation: {
+    eyebrow: 'Uma solução feita para a sua realidade',
+    title: 'Uma solução feita para a sua realidade',
+    lead: {
+      before: 'Cada empresa opera de um jeito. Por isso, o ',
+      accent: 'sistema é desenhado',
+      after: ' de acordo com seus processos, usuários, regras e necessidades de integração.',
+    },
+    beforeTitle: 'Sua operação hoje',
+    afterTitle: 'Sistema desenvolvido',
+    rows: [
+      { before: { icon: 'sheet', text: 'Planilhas dispersas' }, after: { icon: 'database', text: 'Dados centralizados' } },
+      { before: { icon: 'file', text: 'Processos manuais' }, after: { icon: 'gear', text: 'Fluxos automatizados' } },
+      { before: { icon: 'whatsapp', text: 'Informações no WhatsApp' }, after: { icon: 'file', text: 'Histórico no sistema' } },
+      { before: { icon: 'chart', text: 'Falta de indicadores' }, after: { icon: 'chart', text: 'Dashboard em tempo real' } },
+    ],
+    hubAlt:
+      'Sistema sob medida no centro, conectado a gestão de clientes, processos e aprovações, relatórios e indicadores, integrações, cadastros e registros, e equipes e permissões.',
+  },
+  methodology: {
+    eyebrow: 'Metodologia',
+    title: 'Do diagnóstico à evolução contínua',
+    lead: 'Um processo estruturado para reduzir riscos, dar clareza ao escopo e permitir acompanhamento em cada etapa.',
+    deliveryLabel: 'Entregável',
+    steps: [
+      {
+        title: 'Diagnóstico',
+        text: 'Mapeamento dos processos, gargalos e objetivos da operação.',
+        delivery: { icon: 'file', text: 'Mapa da operação' },
+      },
+      {
+        title: 'Estruturação',
+        text: 'Definição de fluxos, regras, telas e prioridades.',
+        delivery: { icon: 'workflow', text: 'Escopo + fluxos' },
+      },
+      {
+        title: 'Desenvolvimento em etapas',
+        text: 'Implementação progressiva com validações ao longo do projeto.',
+        delivery: { icon: 'code', text: 'Versões testáveis' },
+      },
+      {
+        title: 'Implantação e evolução',
+        text: 'Publicação, ajustes, documentação e continuidade.',
+        delivery: { icon: 'file', text: 'Sistema + documentação' },
+      },
+    ],
+  },
+  capabilities: {
+    eyebrow: 'O que o sistema pode resolver',
+    title: 'Funcionalidades pensadas para a operação real',
+    items: [
+      { icon: 'database', title: 'Centralize sua operação', text: 'Clientes, equipes, cadastros e registros em um só lugar.' },
+      { icon: 'chart', title: 'Enxergue o que está acontecendo', text: 'Relatórios e indicadores para acompanhar o desempenho.' },
+      { icon: 'shield', title: 'Controle quem pode fazer o quê', text: 'Permissões por função e nível de acesso.' },
+      { icon: 'link', title: 'Conecte as ferramentas que você já usa', text: 'Integrações com serviços e sistemas do seu fluxo.' },
+      { icon: 'file', title: 'Saiba quem fez cada alteração', text: 'Histórico e rastreabilidade com transparência.' },
+      { icon: 'gear', title: 'Automatize processos repetitivos', text: 'Status, aprovações, notificações e tarefas automáticas.' },
+    ],
+  },
+  example: {
+    eyebrow: 'Exemplo de transformação',
+    title: 'Como um sistema pode mudar a operação',
+    steps: [
+      {
+        tone: 'problem',
+        title: 'Problema',
+        text: 'Informações e tarefas espalhadas entre planilhas, mensagens e diferentes ferramentas.',
+      },
+      {
+        tone: 'solution',
+        title: 'Solução',
+        text: 'Sistema centralizado com usuários, histórico, permissões e automações.',
+      },
+      {
+        tone: 'result',
+        title: 'Resultado',
+        text: 'Mais controle, menos retrabalho e uma operação muito mais clara.',
+      },
+    ],
+  },
+  outcomes: {
+    eyebrow: 'Resultados que o projeto busca melhorar',
+    title: 'O sistema é pensado para gerar impacto na rotina',
+    lead: 'Durante o diagnóstico, definimos quais desses indicadores o sistema deve melhorar.',
+    items: [
+      { icon: 'clock', text: 'Menos retrabalho' },
+      { icon: 'chart', text: 'Mais visibilidade da operação' },
+      { icon: 'database', text: 'Menor dependência de planilhas' },
+      { icon: 'zap', text: 'Informação acessível com rapidez' },
+      { icon: 'gear', text: 'Mais controle sobre processos internos' },
+      { icon: 'target', text: 'Decisões com mais contexto' },
+    ],
+  },
+  idealFor: {
+    eyebrow: 'Ideal para empresas que...',
+    title: 'Sua empresa provavelmente precisa de um sistema sob medida se...',
+    items: [
+      { icon: 'refresh', text: 'A mesma informação precisa ser atualizada em vários lugares' },
+      { icon: 'sheet', text: 'Processos importantes ainda dependem de planilhas' },
+      { icon: 'whatsapp', text: 'Aprovações e solicitações acontecem pelo WhatsApp' },
+      { icon: 'chart', text: 'Relatórios exigem juntar dados manualmente' },
+    ],
+  },
+  cta: {
+    eyebrow: 'Vamos conversar?',
+    title: 'Vamos entender se um sistema sob medida faz sentido para sua operação?',
+    text: 'Me conte como seu processo funciona hoje e eu te ajudo a identificar o que pode ser centralizado, automatizado ou transformado em software.',
+    button: 'Analisar meu projeto',
+    secondary: 'Falar pelo WhatsApp',
+  },
+}
 
 export const process = {
   eyebrow: 'Processo',
@@ -449,7 +625,7 @@ export const about = {
       text: 'Você fala diretamente com quem entende, projeta e desenvolve a solução.',
     },
   ],
-} as const
+}
 
 export const cta = {
   title: 'Tem um processo manual, um sistema que precisa ser criado ou uma aplicação que precisa ser melhorada?',
@@ -466,3 +642,25 @@ export const footer = {
   ],
   note: ['Consultoria técnica em software,', 'automação e cybersecurity.'],
 }
+
+export const pt = {
+  meta,
+  art,
+  ui,
+  brand,
+  nav,
+  navCta,
+  hero,
+  trust,
+  services,
+  projects,
+  projectPages,
+  automacaoPage,
+  softwarePage,
+  process,
+  about,
+  cta,
+  footer,
+}
+
+export type Copy = typeof pt

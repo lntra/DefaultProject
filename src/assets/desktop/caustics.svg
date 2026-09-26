@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="320" viewBox="0 0 640 320">
+  <!-- Seamless caustic web for the CTA water: turbulence noise is ~0 along thin
+       veins; the colour matrix turns those veins into soft white light lines. -->
+  <filter id="c" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="turbulence" baseFrequency="0.009 0.022" numOctaves="2" seed="11" stitchTiles="stitch" />
+    <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -3.2 -3.2 0 0 1.25" />
+  </filter>
+  <rect width="640" height="320" filter="url(#c)" />
+</svg>

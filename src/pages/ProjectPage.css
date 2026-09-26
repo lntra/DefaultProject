@@ -48,10 +48,6 @@
   display: contents;
 }
 
-.pp-stage {
-  display: none;
-}
-
 .pp-back {
   position: relative;
   z-index: 1;
@@ -105,17 +101,25 @@
   padding: 0 22px;
 }
 
-/* ---------- hero illustration: identical treatment to the homepage hero ----------
-   Mobile = .pp-scene, a contained edge-to-edge photo card (mirrors Hero.css .scene).
-   Desktop = .pp-stage, the photo bled off the right edge with a masked fade
-   (mirrors Hero.css .stage/.stage__art) — swapped for .pp-scene at 1024px. */
+/* ---------- hero illustration ----------
+   Mobile = .pp-scene, a rounded photo card below the copy.
+   Desktop = .pp-stage__art, laid out by the shared .page-hero__art (index.css),
+   the same frame as the homepage hero. */
 .pp-scene {
   position: relative;
   z-index: 1;
-  margin: 22px 0 0;
+  margin: 26px var(--gutter) 0;
   aspect-ratio: 1400 / 788;
+  border-radius: 22px;
+  overflow: hidden;
   background: #a9d3f0;
-  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.8), 0 18px 30px -22px rgba(30, 100, 190, 0.6);
+  box-shadow: 0 22px 40px -24px rgba(20, 90, 180, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+/* this photo is paler than the software / automação art — lift it to match */
+.pp-scene__img,
+.pp-stage__art {
+  filter: saturate(1.35) contrast(1.06);
 }
 
 .pp-scene__img {
@@ -134,45 +138,6 @@
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0, transparent 14%),
     linear-gradient(180deg, transparent 80%, rgba(230, 243, 253, 0.55) 100%);
-}
-
-.pp-scene__caption {
-  position: absolute;
-  z-index: 1;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 16px;
-  border-radius: 16px;
-  background: var(--glass-fill);
-  box-shadow: var(--shadow-glass), inset 0 1px 0 var(--glass-hi);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.pp-scene__caption .eyebrow__dot {
-  margin-top: 3px;
-  width: 14px;
-  height: 14px;
-}
-.pp-scene__caption .eyebrow__dot::after {
-  width: 6px;
-  height: 6px;
-}
-
-.pp-scene__caption ul {
-  display: grid;
-  gap: 4px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--navy-700);
 }
 
 /* ---------- badges: same frosted-bar identity as the homepage .trust
@@ -537,122 +502,12 @@
     margin: 0;
   }
 
-  .pp-hero {
-    /* the scene bleeds off the right edge, sized off its own aspect ratio, same idea as the homepage .stage */
-    --scene-w: clamp(560px, 50vw, 980px);
-    --scene-h: calc(var(--scene-w) * 788 / 1400);
-    --copy-w: min(560px, calc(100vw - var(--scene-w) - 24px));
-
-    padding: 26px 0 56px;
-    min-height: calc(-40px + var(--scene-h));
-    background:
-      radial-gradient(38% 50% at 6% 30%, #fff, transparent 74%),
-      radial-gradient(28% 34% at 42% 14%, rgba(255, 255, 255, 0.9), transparent 70%),
-      linear-gradient(180deg, #d6e9f9 0%, #e9f3fc 34%, #f1f7fd 62%, #dcecf9 100%);
-  }
-
-  .pp-hero::after {
-    /* reflective water under the copy, same as the homepage hero */
-    content: '';
-    position: absolute;
-    inset: auto 0 0 0;
-    height: 28%;
-    pointer-events: none;
-    background:
-      repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 12px),
-      linear-gradient(180deg, transparent 0%, rgba(190, 222, 245, 0.4) 45%, rgba(200, 228, 247, 0.6) 100%);
-  }
-
   .pp-scene {
     display: none;
   }
 
-  .pp-stage {
-    display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .pp-stage__scene {
-    position: absolute;
-    top: -10px;
-    right: 0;
-    width: var(--scene-w);
-    aspect-ratio: 1400 / 788;
-  }
-
-  .pp-stage__art {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%),
-      linear-gradient(180deg, transparent 0%, #000 8%, #000 90%, transparent 100%);
-    -webkit-mask-composite: source-in;
-    mask-image: linear-gradient(90deg, transparent 0%, #000 26%),
-      linear-gradient(180deg, transparent 0%, #000 8%, #000 90%, transparent 100%);
-    mask-composite: intersect;
-  }
-
-  .pp-hero__inner {
-    position: relative;
-    z-index: 2;
-    display: block;
-    width: min(1250px, calc(100% - 64px));
-    margin: 0 auto;
-  }
-
   .pp-back {
     padding: 0;
-  }
-
-  .pp-hero__copy {
-    padding: 24px 0 0;
-  }
-
-  .pp-hero__title {
-    max-width: var(--copy-w);
-    font-size: clamp(30px, 2.7vw, 40px);
-    font-weight: 600;
-    line-height: 1.06;
-    letter-spacing: -0.028em;
-    color: var(--navy-800);
-  }
-
-  .pp-hero__lead {
-    max-width: min(470px, var(--copy-w));
-    margin-top: 16px;
-    font-size: 16px;
-    line-height: 1.42;
-    color: #34486e;
-  }
-
-  .pp-hero__actions {
-    gap: 14px;
-    margin-top: 22px;
-  }
-
-  .pp-hero__actions .btn {
-    height: 49px;
-    border-radius: 12px;
-    font-size: 15px;
-  }
-
-  .pp-hero__actions .btn--primary {
-    flex: none;
-    padding: 0 30px;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 50%),
-      linear-gradient(180deg, #1a7cf0 0%, #0a58cf 100%);
-  }
-
-  .pp-hero__actions .btn--glass {
-    padding: 0 40px;
-    color: var(--blue-700);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(238, 247, 254, 0.6));
   }
 
   /* ---------- badges: the exact .trust frosted bar, 3 columns with dividers ---------- */

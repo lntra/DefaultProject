@@ -360,10 +360,21 @@
     aspect-ratio: 1216 / 740;
   }
 
-  .stage__art {
+  .stage__art,
+  .stage__water,
+  .stage__globe {
     position: absolute;
     inset: 0;
-    background: url('../assets/web/hero-scene.webp') center / 100% 100% no-repeat;
+    /* image set inline per language (Hero.tsx, --scene) */
+    background-image: var(--scene);
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  .stage__art {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 26%),
       linear-gradient(180deg, transparent 0%, #000 8%, #000 90%, transparent 100%);
     -webkit-mask-composite: source-in;
@@ -508,5 +519,127 @@
     font-size: 12.5px;
     line-height: 1.35;
     color: #35507c;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Desktop — the scene comes alive: floating globe, rippling water,
+   a breathing halo and a glint twinkling on the lens flare.
+   Globe in the artwork: centre 56.6% / 44.5%, radius ≈ 16.5% of the width.
+   ------------------------------------------------------------------ */
+.stage__filters {
+  position: absolute;
+}
+
+@media (min-width: 1024px) {
+  .stage__water {
+    filter: url(#aero-ripple);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%),
+      linear-gradient(180deg, transparent 64%, #000 76%, #000 88%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 30%),
+      linear-gradient(180deg, transparent 64%, #000 76%, #000 88%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  .stage__globe {
+    transform-origin: 56.6% 44.5%;
+    -webkit-mask-image: radial-gradient(17.4% 28.4% at 56.6% 44.5%, #000 90%, transparent 100%);
+    mask-image: radial-gradient(17.4% 28.4% at 56.6% 44.5%, #000 90%, transparent 100%);
+    animation: globe-float 7s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .stage__halo {
+    position: absolute;
+    left: 56.6%;
+    top: 44.5%;
+    width: 42%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    translate: -50% -50%;
+    background: radial-gradient(circle, transparent 36%, rgba(170, 225, 255, 0.5) 44%, rgba(255, 255, 255, 0.2) 52%, transparent 66%);
+    mix-blend-mode: screen;
+    animation: globe-halo 7s ease-in-out infinite;
+  }
+
+  .stage__glint {
+    position: absolute;
+    left: 44.2%;
+    top: 27.4%;
+    width: 7%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    background:
+      radial-gradient(circle, #fff 0 6%, rgba(255, 255, 255, 0.6) 12%, transparent 30%),
+      linear-gradient(90deg, transparent 0 47%, rgba(255, 255, 255, 0.95) 50%, transparent 53% 100%),
+      linear-gradient(0deg, transparent 0 47%, rgba(255, 255, 255, 0.95) 50%, transparent 53% 100%);
+    -webkit-mask-image: radial-gradient(circle, #000 20%, transparent 70%);
+    mask-image: radial-gradient(circle, #000 20%, transparent 70%);
+    mix-blend-mode: screen;
+    animation: globe-glint 7s ease-in-out infinite;
+  }
+
+  /* the reflective water under the copy slowly flows */
+  .hero::after,
+  .page .page-hero::after {
+    animation: water-flow 9s linear infinite;
+  }
+}
+
+/* rises a few px while swelling just enough to keep covering the original */
+@keyframes globe-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1.012);
+  }
+  50% {
+    transform: translateY(-1%) scale(1.045);
+  }
+}
+
+@keyframes globe-halo {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes globe-glint {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.7) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(45deg);
+  }
+}
+
+@keyframes water-flow {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 12px, 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root .stage__globe,
+  :root .stage__halo,
+  :root .stage__glint,
+  :root .hero::after,
+  :root .page .page-hero::after {
+    animation: none;
+  }
+  :root .stage__water {
+    display: none;
   }
 }

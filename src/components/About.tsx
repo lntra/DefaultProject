@@ -1,10 +1,12 @@
 import { Handshake, Layers, Lightbulb, ShieldCheck } from 'lucide-react'
-import { about } from '../content/copy'
+import { useCopy } from '../i18n/lang'
 import './About.css'
 
 const icons = { lightbulb: Lightbulb, layers: Layers, shield: ShieldCheck, handshake: Handshake }
 
 export function About() {
+  const { about, ui } = useCopy()
+
   return (
     <section className="about" id="sobre">
       <div className="container">
@@ -19,7 +21,9 @@ export function About() {
         </header>
 
         <div className="about__grid">
-          <img className="about__photo" src={about.photo} alt="Retrato de Fernando Araújo" width={795} height={402} />
+          <figure className="about__frame">
+            <img className="about__photo" src={about.photo} alt={ui.aboutPhotoAlt} width={900} height={900} />
+          </figure>
 
           <div className="about__text">
             {about.paragraphs.map((p) => (
@@ -31,7 +35,7 @@ export function About() {
             <h3 className="about__more-title">{about.featuresTitle}</h3>
             <ul className="about__features">
               {about.features.map((f) => {
-                const Icon = icons[f.icon]
+                const Icon = icons[f.icon as keyof typeof icons]
                 return (
                   <li key={f.title} className="feature">
                     <span className="feature__icon">

@@ -1,5 +1,5 @@
 import { Mail } from 'lucide-react'
-import { brand, footer } from '../content/copy'
+import { useCopy } from '../i18n/lang'
 import './Footer.css'
 
 function LinkedinIcon() {
@@ -19,6 +19,8 @@ function GithubIcon() {
 }
 
 export function Footer() {
+  const { brand, footer, ui } = useCopy()
+
   return (
     <footer className="footer">
       <div className="container footer__row">
@@ -28,7 +30,7 @@ export function Footer() {
           <p className="footer__tag footer__tag--d">{brand.taglineShort}</p>
         </div>
 
-        <nav className="footer__links" aria-label="Rodapé">
+        <nav className="footer__links" aria-label={ui.footerNav}>
           {footer.links.map((l) => (
             <a key={l.label} href={l.href}>
               {l.label}
@@ -48,7 +50,7 @@ export function Footer() {
             </a>
           </li>
           <li>
-            <a href="mailto:contato@exemplo.com" aria-label="E-mail">
+            <a href="mailto:contato@exemplo.com" aria-label={ui.email}>
               <Mail size={22} strokeWidth={1.9} />
             </a>
           </li>

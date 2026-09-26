@@ -1,8 +1,11 @@
 import { ArrowRight } from 'lucide-react'
-import { services } from '../content/copy'
+import { Link } from 'react-router-dom'
+import { useCopy } from '../i18n/lang'
 import './Services.css'
 
 export function Services() {
+  const { services } = useCopy()
+
   return (
     <section className="services" id="servicos">
       <div className="container">
@@ -28,9 +31,9 @@ export function Services() {
           {services.items.map((item) => {
             return (
               <li key={item.title}>
-                <a className="service glass" href="#contato">
+                <Link className="service glass card-lift" to={item.href}>
                   <span className="service__art">
-                    <img className="service__3d" src={item.image} alt="" width={240} height={276} />
+                    <img className="service__3d card-icon" src={item.image} alt="" width={240} height={276} />
                   </span>
                   <span className="service__body">
                     <h3 className="service__title">{item.title}</h3>
@@ -39,7 +42,7 @@ export function Services() {
                   <span className="service__go" aria-hidden="true">
                     <ArrowRight size={16} strokeWidth={2.2} />
                   </span>
-                </a>
+                </Link>
               </li>
             )
           })}
