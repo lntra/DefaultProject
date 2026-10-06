@@ -23,7 +23,7 @@ export const en: Copy = {
   meta: {
     title: 'Fernando Araújo — Software, automation and cybersecurity',
     description:
-      'I build custom systems, websites, integrations and automations, with a focus on performance, security and cutting manual work.',
+      'I build custom websites, systems and automations, with a focus on performance, security and cutting manual work.',
   },
 
   art: {
@@ -54,23 +54,31 @@ export const en: Copy = {
   },
 
   nav: [
-    { label: 'Services', href: '#servicos' },
+    {
+      label: 'Solutions',
+      href: '#servicos',
+      children: [
+        { label: 'Software & Web', href: '/projetos/sistema-de-gestao-operacional' },
+        { label: 'Automation', href: '/projetos/automacao-de-processos' },
+        { label: 'Cybersecurity', href: '/projetos/aplicacoes-web-seguras' },
+      ],
+    },
     { label: 'Projects', href: '#projetos' },
-    { label: 'About', href: '#sobre' },
     { label: 'Process', href: '#processo' },
+    { label: 'About', href: '#sobre' },
     { label: 'Contact', href: '#contato' },
   ],
 
   navCta: 'Book a call',
 
   hero: {
-    eyebrow: ['Digital solutions', 'developer'],
+    eyebrow: ['Digital solutions', 'for companies'],
     title: {
       before: 'Software, automation and ',
-      accent: 'cybersecurity',
-      after: ' for companies that need solutions that actually work.',
+      accent: 'security',
+      after: ' for companies that want to operate better.',
     },
-    lead: 'I build custom systems, websites, integrations and automations, with a technical approach focused on performance, security and less manual work.',
+    lead: 'I build custom websites, systems and automations, with a focus on performance, security and cutting manual work.',
     primary: 'Book a call',
     secondary: 'See solutions',
     sceneCaption: ['Secure from', 'day one.'],
@@ -98,52 +106,80 @@ export const en: Copy = {
   ],
 
   services: {
-    eyebrow: 'Services',
-    title: ['Technical solutions for', 'real business problems.'],
-    lead: 'I don’t just build “websites”. I build digital tools that help companies run better, sell better and clear bottlenecks.',
-    more: 'See all services',
+    eyebrow: 'Solutions',
+    title: ['What problem can we', 'solve?'],
+    lead: 'Websites are just one of the tools. I build digital solutions that improve operations, automate processes and create experiences that open up more opportunities for the business.',
     items: [
       {
-        title: 'Software development',
-        text: 'Custom websites, internal systems, dashboards, portals, APIs and web applications.',
+        title: 'Build',
+        text: 'Websites, platforms, internal systems and custom web applications.',
         image: cubeIcon,
         href: '/projetos/sistema-de-gestao-operacional',
       },
       {
-        title: 'Automation',
-        text: 'Bots, integrations between platforms, customer-service flows, data collection and automation of manual processes.',
+        title: 'Automate',
+        text: 'Eliminate repetitive tasks, organize customer service and connect your tools.',
         image: gearIcon,
         href: '/projetos/automacao-de-processos',
       },
       {
-        title: 'Cybersecurity',
-        text: 'Web application security assessments, vulnerability discovery, configuration reviews and remediation guidance.',
+        title: 'Protect',
+        text: 'Assess applications, identify risks and strengthen your systems.',
         image: shieldIcon,
         href: '/projetos/aplicacoes-web-seguras',
       },
     ],
   },
 
-  projects: {
-    eyebrow: 'Projects',
-    title: 'Proven in practice.',
-    more: 'See all projects',
+  impact: {
+    eyebrow: 'Impact',
+    title: 'Technology with real business impact.',
     items: [
       {
+        icon: 'trending',
+        title: 'More opportunities',
+        text: 'Digital experiences designed to turn interest into action.',
+      },
+      {
+        icon: 'zap',
+        title: 'Less manual work',
+        text: 'Automation of tasks, customer service and operational workflows.',
+      },
+      {
+        icon: 'layers',
+        title: 'Custom-built systems',
+        text: 'Tools built around your operation, not the other way around.',
+      },
+      {
+        icon: 'shield',
+        title: 'More security',
+        text: 'Development and assessments that consider security from day one.',
+      },
+    ],
+  },
+
+  projects: {
+    eyebrow: 'Projects',
+    title: 'Real problems. Solutions built to solve them.',
+    items: [
+      {
+        tag: 'Software',
         title: 'Systems that organize operations',
         text: 'Applications that centralize data, records, reports, users and internal workflows.',
         image: project1,
         href: '/projetos/sistema-de-gestao-operacional',
       },
       {
+        tag: 'Automation',
         title: 'Automating repetitive tasks',
         text: 'Bots and integrations that cut manual work, speed up customer service and connect different services.',
         image: project2,
         href: '/projetos/automacao-de-processos',
       },
       {
-        title: 'Secure web applications',
-        text: 'Development with close attention to authentication, access control, APIs, validation and application security.',
+        tag: 'Cybersecurity',
+        title: 'Web application security assessment',
+        text: 'A structured review of authentication, access control, APIs, input validation and business logic, with a technical report and remediation advice.',
         image: project3,
         href: '/projetos/aplicacoes-web-seguras',
       },
@@ -510,18 +546,18 @@ export const en: Copy = {
 
   process: {
     eyebrow: 'Process',
-    title: 'A simple, technical, straightforward process.',
+    title: 'From idea to delivery, without the hassle.',
     steps: [
       {
-        title: 'Understanding the problem',
-        text: 'First, I learn how your company works today, where the bottlenecks are and what result you want to achieve.',
+        title: 'Initial conversation',
+        text: 'I learn how your company works today, where the bottlenecks are and what result you want to achieve.',
       },
       {
-        title: 'Solution proposal',
-        text: 'You get a clear proposal covering scope, timeline, suggested architecture and investment.',
+        title: 'Proposal and scope',
+        text: 'You get a clear proposal covering the suggested solution, scope, timeline and investment.',
       },
       {
-        title: 'Development and validation',
+        title: 'Development',
         text: 'The solution is built incrementally, with testing and regular check-ins along the way.',
       },
       {
@@ -533,12 +569,12 @@ export const en: Copy = {
 
   about: {
     eyebrow: 'About',
-    title: 'Development with a software and security mindset.',
+    title: 'Technical expertise. Direct contact.',
     photo: aboutPhoto,
     paragraphs: [
-      'I’m a full-stack developer with experience in web applications, APIs, dashboards, systems and automations. I also have hands-on training in networking and offensive security, which lets me think not only about how to build a solution, but also about how it could fail, be exploited or cause problems down the line.',
-      'My background combines software development with cybersecurity, including studies and certifications such as CCNA and eJPT, plus hands-on preparation in pentesting and application security.',
-      'I work directly on every project, from understanding the problem to implementation and delivery, aiming for solutions that are simple, reliable and suited to the reality of the business.',
+      'I’m a full-stack developer with experience in web applications, APIs, dashboards, systems and automations. My work also covers offensive security and application security, which lets me consider not only how a solution should work, but also how it could fail and how to reduce those risks.',
+      'I hold certifications such as CCNA and eJPT, with hands-on training in pentesting and web security.',
+      'I work directly on every project, from understanding the problem to implementation and delivery.',
     ],
     featuresTitle: 'More than code.',
     features: [
@@ -566,16 +602,14 @@ export const en: Copy = {
   },
 
   cta: {
-    title: 'Have a manual process to streamline, a system to build or an application that needs improving?',
-    text: 'Let’s talk about the problem and find out whether a technical solution makes sense for your company.',
+    title: 'Is there something in your operation that could work better?',
+    text: 'A website that no longer represents your company, a process that eats up manual work, or an application that needs reviewing — let’s talk about what would make sense to improve.',
     button: 'Book a call',
     secondary: 'Chat on WhatsApp',
   },
 
   footer: {
     links: [
-      { label: 'Privacy', href: '#' },
-      { label: 'Terms', href: '#' },
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/fernando-ara%C3%BAjo-882b93223/' },
     ],
     note: ['Technical consulting in software,', 'automation and cybersecurity.'],

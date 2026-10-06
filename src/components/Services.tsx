@@ -21,10 +21,6 @@ export function Services() {
             </h2>
             <p className="services__lead">{services.lead}</p>
           </div>
-          <a className="link-more" href="#contato">
-            {services.more}
-            <ArrowRight size={17} strokeWidth={2.2} />
-          </a>
         </header>
 
         <ul className="services__list">

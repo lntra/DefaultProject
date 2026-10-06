@@ -17,10 +17,6 @@ export function Projects() {
             </p>
             <h2 className="sect-head__title">{projects.title}</h2>
           </div>
-          <a className="link-more" href="#contato">
-            {projects.more}
-            <ArrowRight size={17} strokeWidth={2.2} />
-          </a>
         </header>
 
         <ul className="projects__list">
@@ -30,6 +26,7 @@ export function Projects() {
               <>
                 <img className="project__thumb" src={p.image} alt="" width={570} height={324} />
                 <span className="project__body">
+                  <span className="project__tag">{p.tag}</span>
                   <h3 className="project__title">{p.title}</h3>
                   <p className="project__text">{p.text}</p>
                 </span>

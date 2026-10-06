@@ -27,11 +27,30 @@ export function Header() {
 
       {/* mobile: dropdown sheet · desktop: inline navigation */}
       <nav id="site-menu" className="header__menu" data-open={open} aria-label={ui.mainNav}>
-        {nav.map((item) => (
-          <a key={item.href} href={toHome(item.href)} onClick={() => setOpen(false)}>
-            {item.label}
-          </a>
-        ))}
+        {nav.map((item) => {
+          const children = 'children' in item ? item.children : undefined
+          if (!children) {
+            return (
+              <a key={item.href} href={toHome(item.href)} onClick={() => setOpen(false)}>
+                {item.label}
+              </a>
+            )
+          }
+          return (
+            <div key={item.href} className="header__item">
+              <a href={toHome(item.href)} onClick={() => setOpen(false)}>
+                {item.label}
+              </a>
+              <div className="header__dropdown">
+                {children.map((child) => (
+                  <a key={child.href} href={child.href} onClick={() => setOpen(false)}>
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )
+        })}
       </nav>
 
       <a className="btn btn--primary btn--cta header__cta" href={toHome('#contato')}>

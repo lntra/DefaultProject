@@ -56,26 +56,33 @@ export const brand = {
 }
 
 export const nav = [
-  { label: 'Serviços', href: '#servicos' },
+  {
+    label: 'Soluções',
+    href: '#servicos',
+    children: [
+      { label: 'Software & Web', href: '/projetos/sistema-de-gestao-operacional' },
+      { label: 'Automação', href: '/projetos/automacao-de-processos' },
+      { label: 'Cybersecurity', href: '/projetos/aplicacoes-web-seguras' },
+    ],
+  },
   { label: 'Projetos', href: '#projetos' },
-  { label: 'Sobre', href: '#sobre' },
   { label: 'Processo', href: '#processo' },
+  { label: 'Sobre', href: '#sobre' },
   { label: 'Contato', href: '#contato' },
 ]
 
 export const navCta = 'Agendar uma conversa'
 
 export const hero = {
-  // the text file suggests "desenvolvedor de soluções digitais" / "consultor técnico" over "freelancer"
-  eyebrow: ['Desenvolvedor de', 'soluções digitais'],
+  eyebrow: ['Soluções digitais', 'para empresas'],
   title: {
     before: 'Software, automação e ',
-    accent: 'cybersecurity',
-    after: ' para empresas que precisam de soluções que realmente funcionam.',
+    accent: 'segurança',
+    after: ' para empresas que querem operar melhor.',
   },
-  lead: 'Desenvolvo sistemas, sites, integrações e automações sob medida, com uma abordagem técnica focada em performance, segurança e redução de trabalho manual.',
+  lead: 'Desenvolvo sites, sistemas e automações sob medida, com foco em performance, segurança e redução de trabalho manual.',
   primary: 'Agendar uma conversa',
-  secondary: 'Ver soluções',
+  secondary: 'Conhecer soluções',
   sceneCaption: ['Segurança desde', 'o início.'],
 }
 
@@ -102,28 +109,56 @@ export const trust = [
 
 // Each service opens the case-study page of its area (same targets as `projects`).
 export const services = {
-  eyebrow: 'Serviços',
-  title: ['Soluções técnicas para', 'problemas reais de negócio.'],
-  lead: 'Não trabalho apenas com “sites”. Desenvolvo ferramentas digitais que ajudam empresas a operar melhor, vender melhor e reduzir gargalos.',
-  more: 'Ver todos os serviços',
+  eyebrow: 'Soluções',
+  title: ['Qual problema podemos', 'resolver?'],
+  lead: 'Sites são apenas uma das ferramentas. Desenvolvo soluções digitais para melhorar operações, automatizar processos e criar experiências que geram mais oportunidades para o negócio.',
   items: [
     {
-      title: 'Desenvolvimento de software',
-      text: 'Sites, sistemas internos, dashboards, portais, APIs e aplicações web sob medida.',
+      title: 'Construir',
+      text: 'Sites, plataformas, sistemas internos e aplicações sob medida.',
       image: cubeIcon,
       href: '/projetos/sistema-de-gestao-operacional',
     },
     {
-      title: 'Automação',
-      text: 'Bots, integrações entre plataformas, fluxos de atendimento, coleta de dados e automação de processos manuais.',
+      title: 'Automatizar',
+      text: 'Elimine tarefas repetitivas, organize atendimentos e conecte ferramentas.',
       image: gearIcon,
       href: '/projetos/automacao-de-processos',
     },
     {
-      title: 'Cybersecurity',
-      text: 'Análise de segurança de aplicações web, identificação de vulnerabilidades, revisão de configurações e orientação para correção.',
+      title: 'Proteger',
+      text: 'Avalie aplicações, identifique riscos e fortaleça seus sistemas.',
       image: shieldIcon,
       href: '/projetos/aplicacoes-web-seguras',
+    },
+  ],
+}
+
+// New section between Serviços and Projetos: translates the three pillars into business
+// outcomes, so the home reads as a commercial operation rather than a developer résumé.
+export const impact = {
+  eyebrow: 'Impacto',
+  title: 'Tecnologia com impacto no negócio.',
+  items: [
+    {
+      icon: 'trending',
+      title: 'Mais oportunidades',
+      text: 'Experiências digitais pensadas para transformar interesse em ação.',
+    },
+    {
+      icon: 'zap',
+      title: 'Menos trabalho manual',
+      text: 'Automação de tarefas, atendimento e fluxos operacionais.',
+    },
+    {
+      icon: 'layers',
+      title: 'Sistemas sob medida',
+      text: 'Ferramentas construídas em torno da operação, não o contrário.',
+    },
+    {
+      icon: 'shield',
+      title: 'Mais segurança',
+      text: 'Desenvolvimento e avaliações com segurança considerada desde o início.',
     },
   ],
 }
@@ -133,24 +168,26 @@ export const services = {
 // back to the contact section.
 export const projects = {
   eyebrow: 'Projetos',
-  title: 'Capacidade prática.',
-  more: 'Ver todos os projetos',
+  title: 'Problemas reais. Soluções construídas para resolvê-los.',
   items: [
     {
+      tag: 'Software',
       title: 'Sistemas que organizam operações',
       text: 'Aplicações para centralizar dados, cadastros, relatórios, usuários e fluxos internos.',
       image: project1,
       href: '/projetos/sistema-de-gestao-operacional',
     },
     {
+      tag: 'Automação',
       title: 'Automação de tarefas repetitivas',
       text: 'Bots e integrações para reduzir trabalho manual, acelerar atendimento e conectar serviços diferentes.',
       image: project2,
       href: '/projetos/automacao-de-processos',
     },
     {
-      title: 'Aplicações web seguras',
-      text: 'Desenvolvimento com atenção a autenticação, controle de acesso, APIs, validações e segurança de aplicações.',
+      tag: 'Cybersecurity',
+      title: 'Assessment de segurança em aplicação web',
+      text: 'Avaliação estruturada de autenticação, controle de acesso, APIs, validações e lógica de negócio, com relatório técnico e recomendações de correção.',
       image: project3,
       href: '/projetos/aplicacoes-web-seguras',
     },
@@ -571,18 +608,18 @@ export const softwarePage = {
 
 export const process = {
   eyebrow: 'Processo',
-  title: 'Um processo simples, técnico e direto.',
+  title: 'Da ideia à entrega, sem complicação.',
   steps: [
     {
-      title: 'Entendimento do problema',
-      text: 'Primeiro eu entendo como sua empresa trabalha hoje, onde estão os gargalos e qual resultado você quer atingir.',
+      title: 'Conversa inicial',
+      text: 'Entendo como sua empresa trabalha hoje, onde estão os gargalos e qual resultado você quer atingir.',
     },
     {
-      title: 'Proposta de solução',
-      text: 'Você recebe uma proposta clara com escopo, prazo, arquitetura sugerida e investimento.',
+      title: 'Proposta e escopo',
+      text: 'Você recebe uma proposta clara com solução sugerida, escopo, prazo e investimento.',
     },
     {
-      title: 'Desenvolvimento e validação',
+      title: 'Desenvolvimento',
       text: 'A solução é construída de forma incremental, com testes e acompanhamento durante o processo.',
     },
     {
@@ -594,12 +631,12 @@ export const process = {
 
 export const about = {
   eyebrow: 'Sobre',
-  title: 'Desenvolvimento com visão de software e segurança.',
+  title: 'Especialização técnica. Atendimento direto.',
   photo: aboutPhoto,
   paragraphs: [
-    'Sou desenvolvedor full stack com experiência em aplicações web, APIs, dashboards, sistemas e automações. Também tenho formação prática em redes e segurança ofensiva, o que me permite pensar não apenas em como construir uma solução, mas também em como ela pode falhar, ser explorada ou gerar problemas no futuro.',
-    'Minha experiência combina desenvolvimento de software com cybersecurity, incluindo estudos e certificações como CCNA e eJPT, além de preparação prática em pentesting e segurança de aplicações.',
-    'Trabalho diretamente com cada projeto, desde o entendimento do problema até a implementação e entrega, buscando soluções simples, confiáveis e adequadas à realidade do negócio.',
+    'Sou desenvolvedor full stack com experiência em aplicações web, APIs, dashboards, sistemas e automações. Minha atuação também inclui segurança ofensiva e segurança de aplicações, o que me permite considerar não apenas como uma solução deve funcionar, mas também como ela pode falhar e como reduzir esses riscos.',
+    'Tenho certificações como CCNA e eJPT e formação prática em pentesting e segurança web.',
+    'Trabalho diretamente com cada projeto, do entendimento do problema à implementação e entrega.',
   ],
   // "Bloco de diferenciais"
   featuresTitle: 'Mais do que código.',
@@ -628,16 +665,14 @@ export const about = {
 }
 
 export const cta = {
-  title: 'Tem um processo manual, um sistema que precisa ser criado ou uma aplicação que precisa ser melhorada?',
-  text: 'Vamos conversar sobre o problema e descobrir se uma solução técnica faz sentido para sua empresa.',
+  title: 'Tem algo na sua operação que poderia funcionar melhor?',
+  text: 'Seja um site que não representa mais sua empresa, um processo que consome trabalho manual ou uma aplicação que precisa ser avaliada, podemos conversar sobre o que faria sentido melhorar.',
   button: 'Agendar uma conversa',
   secondary: 'Falar pelo WhatsApp',
 }
 
 export const footer = {
   links: [
-    { label: 'Privacidade', href: '#' },
-    { label: 'Termos', href: '#' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/fernando-ara%C3%BAjo-882b93223/' },
   ],
   note: ['Consultoria técnica em software,', 'automação e cybersecurity.'],
@@ -653,6 +688,7 @@ export const pt = {
   hero,
   trust,
   services,
+  impact,
   projects,
   projectPages,
   automacaoPage,

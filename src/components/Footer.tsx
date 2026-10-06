@@ -50,7 +50,7 @@ export function Footer() {
             </a>
           </li>
           <li>
-            <a href="mailto:intradevcontact@gmail.com" aria-label={ui.email}>
+            <a href="mailto:fernando@fernandoaraujo.site" aria-label={ui.email}>
               <Mail size={22} strokeWidth={1.9} />
             </a>
           </li>
